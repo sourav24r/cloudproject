@@ -11,47 +11,91 @@ DURATION: 6 WEEEKS
 
 MENTOR: NEELA SANTOSH
 
-Task 1
-Steps to Create and Configure an AWS S3 Bucket
+
+
+Amazon Simple Storage Service (S3) is a cloud storage service that allows users to store and retrieve data at any scale. Here’s a step-by-step guide to creating an S3 bucket and enabling public access through the AWS Management Console without using the Command Line Interface (CLI) or JSON configurations.
+
 Step 1: Log in to AWS Console
-Go to AWS Management Console.
+Open your web browser and go to the AWS Management Console: https://aws.amazon.com/console/
 
-Sign in with your AWS account credentials.
+Sign in using your AWS credentials.
 
-Step 2: Open the S3 Service
-In the AWS Console, search for S3 in the search bar.
+Step 2: Navigate to S3 Service
+Once logged in, search for "S3" in the AWS Services search bar at the top.
 
-Click on S3 to open the Amazon S3 Dashboard.
+Click on the S3 option to open the S3 Dashboard.
 
-Step 3: Create a New S3 Bucket
-Click on "Create Bucket".
+Step 3: Create an S3 Bucket
+Click the Create bucket button.
 
-Enter a Bucket Name (must be globally unique, e.g., my-s3-bucket-2025).
+Enter a unique bucket name (e.g., my-public-bucket).
 
-Choose a Region (select the one closest to your users).
+Choose an AWS Region (Select the region closest to your users for better performance).
 
-Block Public Access (Keep the default setting unless you need public access).
+Uncheck the Block all public access checkbox (This is crucial for public access).
 
-Click Create Bucket.
+A warning will appear about public access; acknowledge it by ticking the confirmation checkbox.
 
-Step 4: Upload Files to S3
-Open your newly created S3 bucket.
+Keep other settings default unless specific configurations are required.
 
-Click Upload.
+Click Create bucket to finalize.
 
-Click Add files and select files from your computer.
+Step 4: Enable Public Access to the Bucket
+In the S3 Dashboard, locate and click on your newly created bucket.
 
-Click Upload.
+Navigate to the Permissions tab.
 
-Step 5: Set Permissions (Optional)
-Open your S3 bucket → Click on the Permissions tab.
+Scroll down to the Block public access settings section.
 
-Under Access control list (ACL), modify settings if needed.
+Click Edit and uncheck all the options that block public access.
+
+Confirm your selection by ticking the acknowledgment checkbox.
 
 Click Save changes.
 
+Step 5: Modify the Bucket Policy for Public Read Access
+Go to the Permissions tab of your bucket.
 
+Scroll down to the Bucket policy section and click Edit.
+
+Click Policy generator and follow these steps:
+
+Select Type: S3 Bucket Policy
+
+Effect: Allow
+
+Principal: * (This means the policy applies to everyone)
+
+Actions: Select s3:GetObject (This allows public read access to objects).
+
+ARN: Enter your bucket’s ARN (found in the bucket details).
+
+Click Add Statement → Generate Policy.
+
+Copy and paste the generated policy into the Bucket Policy Editor.
+
+Click Save changes.
+
+Step 6: Upload and Set Object Permissions
+Open your bucket and click the Objects tab.
+
+Click Upload, then Add files to select files from your computer.
+
+Click Upload to store them in the bucket.
+
+After the upload, select the uploaded file(s).
+
+Click the Actions button and select Make public using ACL.
+
+Confirm and apply changes.
+
+Step 7: Access Your Public Files
+Click on an uploaded file.
+
+Under Object URL, copy the link.
+
+Open the URL in a browser to verify public access.
 
 Conclusion
-By following these steps, you have successfully set up AWS, created an S3 bucket, uploaded an image, and generated an Object URL for external sharing. If the URL does not work due to permissions, you may need to adjust the bucket policy or use presigned URLs to grant temporary access. AWS S3 provides a reliable and scalable solution for storing and sharing files in the cloud. 🚀
+Your S3 bucket is now set up with public access, and objects can be shared using their URLs. However, enabling public access is a security risk, so ensure you only use it when necessary and monitor access logs for security.
 https://souravs328th.s3.us-west-1.amazonaws.com/codtechimage.jfif
